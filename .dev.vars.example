@@ -1,0 +1,28 @@
+# Copy this file to .dev.vars for local development.
+# Real deployments should use `wrangler secret put` for the secret values below.
+
+ZEROAUTH_CLIENT_ID=zeroauth-local-client
+ZEROAUTH_CLIENT_SECRET=zeroauth-local-secret
+# Callback URI of the OIDC relying party you are testing with.
+ZEROAUTH_ALLOWED_REDIRECT_URIS=https://app.example.com/callback
+
+# Generate these with `node scripts/generate-jwk.mjs` and paste the output.
+# ZeroAuth fails fast with a clear error until the placeholders are replaced.
+ZEROAUTH_PRIVATE_JWK=replace-me
+ZEROAUTH_KID=replace-me
+
+# Must be the public URL that relying parties use as the issuer. For local development
+# this is usually a tunnel URL; for production it is your Worker or custom domain.
+ZEROAUTH_ISSUER=https://zeroauth.example.workers.dev
+
+ZEROAUTH_AUTH_CODE_TTL_SECONDS=60
+ZEROAUTH_TOKEN_TTL_SECONDS=3600
+# Local-only test password. Change it, and use `wrangler secret put ZEROAUTH_PASSWORD`
+# for real deployments instead of committing a value here.
+ZEROAUTH_PASSWORD=zeroauth-local-password
+# Optional: skip the password page for a signed session (seconds). 0 disables sessions.
+ZEROAUTH_SESSION_TTL_SECONDS=0
+# Optional: /authorize requests allowed per client IP per 5 minutes. 0 disables the limit.
+ZEROAUTH_MAX_AUTHORIZE_REQUESTS=60
+# Optional: failed password attempts allowed per client IP before a 10 minute lockout.
+ZEROAUTH_MAX_LOGIN_ATTEMPTS=10

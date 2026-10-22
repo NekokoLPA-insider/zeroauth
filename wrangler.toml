@@ -1,0 +1,27 @@
+name = "zeroauth"
+main = "src/index.ts"
+compatibility_date = "2026-04-21"
+workers_dev = true
+preview_urls = false
+
+# Optional: attach a custom domain (the DNS record and certificate are created for you).
+# routes = [{ pattern = "zeroauth.example.com", custom_domain = true }]
+
+# Non-secret configuration. The secret values go through `wrangler secret put`:
+#   ZEROAUTH_CLIENT_SECRET, ZEROAUTH_PRIVATE_JWK, ZEROAUTH_PASSWORD
+#
+# [vars]
+# ZEROAUTH_CLIENT_ID = "your-client-id"
+# ZEROAUTH_KID = "your-key-id"
+# ZEROAUTH_ISSUER = "https://zeroauth.example.com"
+# ZEROAUTH_ALLOWED_REDIRECT_URIS = "https://app.example.com/callback"
+
+# Authorization codes, pending logins and rate limits live in a Durable Object so
+# single-use semantics are atomic.
+[[durable_objects.bindings]]
+name = "ZEROAUTH_STORE"
+class_name = "AuthStore"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["AuthStore"]

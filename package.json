@@ -1,0 +1,25 @@
+{
+  "name": "zeroauth",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "ZeroAuth is a password-gated OpenID Connect provider for testing SSO with any OIDC relying party on Cloudflare Workers.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "node --experimental-transform-types test/run.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "jose": "^6.2.12"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261019.1",
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0.2",
+    "wrangler": "^4.151.1"
+  }
+}
